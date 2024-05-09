@@ -40,10 +40,9 @@ resource "aws_autoscaling_group" "example" {
 }
 resource "aws_autoscaling_policy" "policy_example" {
   name                   = "example-asg-policy"
-  scaling_adjustment     = 1
   adjustment_type        = "ChangeInCapacity"
-  cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.example.name
+  policy_type            = "TargetTrackingScaling"
   target_tracking_configuration {
     predefined_metric_specification {
       predefined_metric_type = "ASGAverageCPUUtilization"
